@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SeeMe</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>SeeMe 👁️</h1>
+  <div id="auth">
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Mot de passe" />
+    <button onclick="signUp()">S'inscrire</button>
+    <button onclick="signIn()">Se connecter</button>
+    <button onclick="signOut()">Se déconnecter</button>
+  </div>
+
+  <div id="app" style="display: none;">
+    <p>Bienvenue, <span id="user-email"></span></p>
+    <button onclick="toggleVisibility()">👁️ Toggle Visibilité</button>
+    <p id="visibility-status">Statut : inconnu</p>
+    <h3>Utilisateurs visibles à proximité :</h3>
+    <ul id="visible-users"></ul>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
