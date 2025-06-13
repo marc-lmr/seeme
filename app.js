@@ -13,17 +13,61 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Fonction pour mettre à jour l'affichage selon l'état de connexion
+// Fonction de mise à jour UI
 function updateUI(user) {
   const authDiv = document.getElementById("auth");
   const appDiv = document.getElementById("app");
   const userEmail = document.getElementById("user-email");
 
+  console.log("updateUI called", user);
+
   if (user) {
-    // Connecté
     authDiv.style.display = "none";
     appDiv.style.display = "block";
     userEmail.textContent = user.email;
   } else {
-    // Déconnecté
-    authDiv.sty
+    authDiv.style.display = "block";
+    appDiv.style.display = "none";
+    userEmail.textContent = "";
+  }
+}
+
+// Détecter les connexions / déconnexions
+auth.onAuthStateChanged((user) => {
+  updateUI(user);
+});
+
+// Fonctions globales
+window.signUp = function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      alert("Inscription réussie !");
+    })
+    .catch((error) => {
+      alert("Erreur : " + error.message);
+    });
+};
+
+window.signIn = function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      alert("Connexion réussie !");
+    })
+    .catch((error) => {
+      alert("Erreur : " + error.message);
+    });
+};
+
+window.signOut = function () {
+  auth.signOut().then(() => {
+    alert("Déconnexion réussie !");
+  });
+};
+
+window.toggleVisibility = function () {
+  alert("Fonction à venir : gestion de la visibilité 👁️");
+};
