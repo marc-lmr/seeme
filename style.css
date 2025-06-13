@@ -7,7 +7,7 @@ body {
 }
 input, button {
   padding: 8px;
-  margin: 4px;
+  margin: 4px 0;
   display: block;
   width: 100%;
 }
@@ -16,4 +16,5 @@ input, button {
   background: white;
   padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
