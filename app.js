@@ -13,33 +13,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Déclarer les fonctions dans le scope global
-window.signUp = function () {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  auth.createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      alert("Inscription réussie !");
-    })
-    .catch((error) => {
-      alert("Erreur : " + error.message);
-    });
-};
+// Fonction pour mettre à jour l'affichage selon l'état de connexion
+function updateUI(user) {
+  const authDiv = document.getElementById("auth");
+  const appDiv = document.getElementById("app");
+  const userEmail = document.getElementById("user-email");
 
-window.signIn = function () {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  auth.signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      alert("Connexion réussie !");
-    })
-    .catch((error) => {
-      alert("Erreur : " + error.message);
-    });
-};
-
-window.signOut = function () {
-  auth.signOut().then(() => {
-    alert("Déconnexion réussie !");
-  });
-};
+  if (user) {
+    // Connecté
+    authDiv.style.display = "none";
+    appDiv.style.display = "block";
+    userEmail.textContent = user.email;
+  } else {
+    // Déconnecté
+    authDiv.sty
