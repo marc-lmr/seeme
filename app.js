@@ -13,8 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Rendre les fonctions accessibles depuis le HTML
-
+// Déclarer les fonctions dans le scope global
 window.signUp = function () {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
