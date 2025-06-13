@@ -13,13 +13,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Fonction de mise à jour UI
+// Fonction pour mettre à jour l'affichage
 function updateUI(user) {
   const authDiv = document.getElementById("auth");
   const appDiv = document.getElementById("app");
   const userEmail = document.getElementById("user-email");
-
-  console.log("updateUI called", user);
 
   if (user) {
     authDiv.style.display = "none";
@@ -32,8 +30,9 @@ function updateUI(user) {
   }
 }
 
-// Détecter les connexions / déconnexions
+// Surveille les connexions/déconnexions
 auth.onAuthStateChanged((user) => {
+  console.log("État de connexion :", user);
   updateUI(user);
 });
 
@@ -69,5 +68,5 @@ window.signOut = function () {
 };
 
 window.toggleVisibility = function () {
-  alert("Fonction à venir : gestion de la visibilité 👁️");
+  alert("Fonction à venir : visibilité 👁️");
 };
