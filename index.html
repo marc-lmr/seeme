@@ -9,6 +9,7 @@
 <body>
   <h1>SeeMe 👁️</h1>
 
+  <!-- Zone Authentification -->
   <div id="auth">
     <input type="email" id="email" placeholder="Email" />
     <input type="password" id="password" placeholder="Mot de passe" />
@@ -17,18 +18,28 @@
     <button onclick="signOut()">Se déconnecter</button>
   </div>
 
+  <!-- Complément de Profil -->
+  <div id="profile-setup" style="display: none;">
+    <h3>Compléter votre profil</h3>
+    <input type="text" id="pseudo" placeholder="Votre pseudo" />
+    <input type="file" id="photo" />
+    <button onclick="saveProfile()">Enregistrer</button>
+  </div>
+
+  <!-- Zone App principale -->
   <div id="app" style="display: none;">
-    <p>Bienvenue, <span id="user-email"></span></p>
+    <p>Bienvenue, <span id="user-pseudo"></span></p>
     <button onclick="toggleVisibility()">👁️ Toggle Visibilité</button>
     <p id="visibility-status">Statut : inconnu</p>
     <h3>Utilisateurs visibles à proximité :</h3>
-    <ul id="visible-users"></ul>
+    <div id="visible-users" class="card-container"></div>
   </div>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
